@@ -91,6 +91,12 @@
         "namedComponents": "arrow-function",
         "unnamedComponents": "arrow-function"
       }
+    ],
+    "default-param-last": [
+      "off"
+    ],
+    "import/prefer-default-export": [
+      "off"
     ]
   },
   "settings": {

@@ -1,13 +1,74 @@
-body {
+* {
+  padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  border: 0;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+
+.container {
+  max-width: 1040px;
+  padding-right: 50px;
+  padding-left: 50px;
+  margin: 0 auto;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  color: #000;
+  background-color: #EBEEF3;
+}
+
+.ant-tag {
+ 
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 12px;
+  font-size: 12px;
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.85);
+  border-radius: 2px;
+ 
+}
+.ant-pagination {
+  display: flex;
+  justify-content: center;
+}
+.ant-pagination-item a {
+  display: block;
+  padding: 0 6px;
+  color: rgba(0, 0, 0, 0.75);
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+
+
+.ant-pagination-item-active a {
+  color: #fff;
+  background-color: #1890FF;
+}
+
+
+.ant-pagination-item {
+  border: none;
+  background-color: transparent;
+}
+
+.ant-pagination-item-active {
+  font-weight: 400;
+  color: #fff;
+}
+
+.ant-pagination-prev .ant-pagination-item-link, .ant-pagination-next .ant-pagination-item-link {
+  background-color: transparent;
+  border: none;
+  border-radius: 0;
+  font-size: 16px;
 }

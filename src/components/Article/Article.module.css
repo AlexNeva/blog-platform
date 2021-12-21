@@ -1,0 +1,83 @@
+.ArticleList {
+  padding-top: 25px;
+  padding-bottom: 25px;
+}
+
+
+.Article {
+  padding: 15px 15px 15px 19px;
+  background-color: #fff;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
+  margin-bottom: 25px;
+}
+
+.ArticleHeader {
+  display: grid;
+  align-items: center;
+  grid-template-columns: auto 1fr auto;
+  column-gap: 13px;
+  margin-bottom: 7px;
+}
+
+.ArticleTitle {
+  font-size: 20px;
+  color: #1890FF;
+  text-transform: lowercase;
+}
+
+.ArticleTitle::first-letter {
+  text-transform: capitalize;
+}
+
+.Likes {
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.Likes:disabled {
+  cursor: not-allowed;
+}
+.LikesIcon {
+  display: flex;
+  align-items: center;
+  margin-right: 3px;
+  flex-shrink: 0;
+}
+.LikesCount {
+  font: 12px;
+}
+
+.ArticleTags {
+  grid-column: 1 / span 2;
+}
+
+.Author {
+  display: flex;
+  align-items: center;
+  grid-row: 1 / span 2;
+  grid-column: 3;
+}
+
+.AuthorInfo {
+  flex-shrink: 0;
+  margin-right: 12px;
+
+}
+.AuthorName {
+  font-size: 18px;
+  text-transform: capitalize;
+}
+.AuthorDate {
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.5);
+}
+.AuthorPhoto {
+  flex-shrink: 0;
+}
+.ArticleDescr {
+  line-height: 1.8;
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.75);
+}
