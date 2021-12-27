@@ -23,7 +23,6 @@ ReactDOM.render(
       <Router>
         <App />
       </Router>
-
     </Provider>
 
   </React.StrictMode>,

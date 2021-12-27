@@ -13,15 +13,11 @@ import classes from './Article.module.css'
 
 
 
-
-
-
 function ArticleList() {
 
   const dispatch = useDispatch();
-  const { articlesList: articles, loading } = useSelector(state => state.articles)
+  const { articlesList: articles, loading, articlesCount } = useSelector(state => state.articles)
 
-  console.log(articles);
 
   const getArticles = (limit, offset) => {
     dispatch(fetchArticles(limit, offset))
@@ -59,19 +55,17 @@ function ArticleList() {
 
 
 
-      < Pagination
+      <Pagination
         style={{
-          display: loading ? 'none' : 'flex'
+          display: loading || !articles.length ? 'none' : 'flex'
         }}
+
         defaultCurrent={1}
-        total={50}
-        onChange={(page) => getArticles(5, page - 1)}
+        defaultPageSize={5}
+        total={articlesCount}
+        onChange={(page) => getArticles(5, (page - 1) * 5)}
+        showSizeChanger={false}
       />
-
-
-
-
-
 
 
     </div>

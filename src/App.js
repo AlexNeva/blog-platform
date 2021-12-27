@@ -1,5 +1,9 @@
-import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-unused-vars */
+import React, { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { Routes, Route, Navigate } from 'react-router-dom';
+import Cookies from 'js-cookie';
 import ArticlesPage from './pages/ArticlesPage'
 import ArticlePage from './pages/ArticlePage'
 import CreateArticle from './pages/CreateArticle'
@@ -9,30 +13,49 @@ import NotFoundPage from './pages/NotFoundPage'
 import SignIn from './pages/SignIn'
 import SignUp from './pages/SignUp'
 import MainLayout from './Layouts/MainLayout';
-
+import { fetchUser } from './store/asyncActions/user'
 
 
 
 
 function App() {
-  return (
-    <div className="App">
 
-      <Routes>
-        <Route path='/' element={<MainLayout />}>
-          <Route index element={<ArticlesPage />} />
-          <Route path="articles/*" element={<ArticlePage />} />
-          <Route path="article/new" element={<CreateArticle />} />
-          <Route path="article/edit" element={<EditArticle />} />
-          <Route path="signin" element={<SignIn />} />
-          <Route path="signup" element={<SignUp />} />
-          <Route path="profile/edit" element={<EditProfile />} />
-          <Route path="*" element={<NotFoundPage />} />
-        </Route>
-      </Routes>
+  // const [ready, setReady] = useState(false)
 
-    </div>
-  );
+  const dispatch = useDispatch();
+  const { isAuth, fetching } = useSelector(state => state.user);
+
+
+  const token = Cookies.get('token')
+
+  useEffect(() => {
+    if (token) {
+      dispatch(fetchUser())
+    }
+  }, [])
+
+
+  if (!fetching) {
+    return (
+      <div className="App">
+        <Routes>
+          <Route path='/' element={<MainLayout />}>
+            <Route index element={<ArticlesPage />} />
+            <Route path="/articles" element={<ArticlesPage />} />
+            <Route path="/articles/:id" element={<ArticlePage />} />
+            <Route path="/new-article" element={isAuth ? <CreateArticle /> : <Navigate to='/sign-in' />} />
+            <Route path="/articles/:id/edit" element={<EditArticle />} />
+            <Route path="/sign-in" element={<SignIn />} />
+            <Route path="/sign-up" element={<SignUp />} />
+            <Route path="/profile" element={isAuth ? <EditProfile /> : <Navigate to='/sign-in' />} />
+            <Route path="*" element={<NotFoundPage />} />
+          </Route>
+        </Routes>
+      </div>
+    );
+  }
+
+  return <div className="App" />
 }
 
 export default App;

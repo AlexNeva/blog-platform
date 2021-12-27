@@ -30,6 +30,7 @@
 }
 
 .Likes {
+  justify-self: start;
   display: flex;
   align-items: center;
   background-color: transparent;
@@ -67,17 +68,70 @@
 }
 .AuthorName {
   font-size: 18px;
-  text-transform: capitalize;
+  
 }
 .AuthorDate {
   font-size: 12px;
   color: rgba(0, 0, 0, 0.5);
 }
 .AuthorPhoto {
+  position: relative;
   flex-shrink: 0;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  overflow: hidden;
 }
+
+.AuthorPhoto img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
 .ArticleDescr {
   line-height: 1.8;
   font-size: 12px;
   color: rgba(0, 0, 0, 0.75);
+  margin-bottom: 0;
+}
+
+.ArticleActions {
+  display: flex;
+  margin-left: 30px;
+}
+
+.ArticleBody {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.ArticleDelete {
+  cursor: pointer;
+  border: 1px solid #F5222D;
+  border-radius: 5px;
+  padding: 7px 17px;
+  background-color: #fff;
+  color: #F5222D;
+  font-size: 14px;
+  margin-right: 12px;
+  line-height: 1;
+}
+
+.ArticleEdit {
+  cursor: pointer;
+  border: 1px solid #52C41A;
+  border-radius: 5px;
+  color: #52C41A;
+  font-size: 14px;
+  padding: 7px 19px;
+  line-height: 1;
+
 }

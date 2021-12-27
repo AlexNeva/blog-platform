@@ -1,0 +1,105 @@
+.Form {
+  font-family: "Roboto", sans-serif;
+  overflow: hidden;
+  background-color: #FFFFFF;
+  border: 1px solid #D9D9D9;
+  box-sizing: border-box;
+  box-shadow: 0px 22px 106px rgba(0, 0, 0, 0.07), 0px 9.19107px 44.2843px rgba(0, 0, 0, 0.0503198), 0px 4.91399px 23.6765px rgba(0, 0, 0, 0.0417275), 0px 2.75474px 13.2728px rgba(0, 0, 0, 0.035), 0px 1.46302px 7.04911px rgba(0, 0, 0, 0.0282725), 0px 0.608796px 2.93329px rgba(0, 0, 0, 0.0196802);
+  border-radius: 6px;
+  max-width: 385px;
+  margin: 0 auto;
+  padding: 45px 30px;
+}
+
+.FormTitle {
+  color: #262626;
+  font-weight: 500;
+  font-size: 20px;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.FormControl {
+  color: #262626;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+
+
+.FormControl label {
+  font-size: 14px;
+}
+
+.FormControl input, .FormControl textarea {
+  background-color: #FFFFFF;
+  border: 1px solid #D9D9D9;
+  border-radius: 4px;
+  width: 100%;
+  min-width: 0;
+  
+  padding: 0 12px;
+  font-size: 16px;
+}
+
+.FormControl input {
+  height: 40px;
+}
+
+.FormControl textarea {
+  padding-top: 7px;
+  resize: none;
+  height: 168px;
+}
+
+.FormControl input.error, .FormControl textarea.error {
+  border-color: #F5222D;
+}
+
+.FormControl input::placeholder, .FormControl textarea::placeholder {
+  color: #BFBFBF;
+  font-size: 16px;
+}
+
+.FormControl input:focus, .FormControl textarea:focus {
+  outline: none;
+}
+
+.Form hr {
+  width: 100%;
+  height: 1px;
+  background-color: #E8E8E8;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.FormButton {
+  margin-top: 20px;
+  width: 100%;
+  background-color: #1890FF;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 16px;
+  padding: 8px 24px;
+  margin-bottom: 8px;
+  cursor: pointer;
+}
+
+.Form small {
+  display: block;
+ 
+  color: #8C8C8C;
+  font-size: 12px;
+  text-align: center;
+}
+
+.Form small a {
+  color: #1890FF;
+}
+
+p.error {
+  color: #F5222D;
+}
+
+
+
