@@ -1,3 +1,5 @@
+/* eslint-disable guard-for-in */
+/* eslint-disable id-length */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
@@ -23,7 +25,8 @@ function App() {
   // const [ready, setReady] = useState(false)
 
   const dispatch = useDispatch();
-  const { isAuth, fetching, error } = useSelector(state => state.user);
+  const { isAuth, error: authError } = useSelector(state => state.user);
+  const { error: articleError } = useSelector(state => state.articles);
 
 
   useEffect(() => {
@@ -31,10 +34,20 @@ function App() {
   }, [])
 
   useEffect(() => {
-    if (error) {
-      message.info(error);
+    if (authError) {
+      // message.info(error);
+
+      for (const e in authError) message.error(`Error: ${e} - ${authError[e]}`);
     }
-  }, [error])
+  }, [authError])
+
+  useEffect(() => {
+    if (articleError) {
+      // message.info(error);
+
+      for (const e in articleError) message.error(`Error: ${e} - ${articleError[e]}`);
+    }
+  }, [articleError])
 
 
 

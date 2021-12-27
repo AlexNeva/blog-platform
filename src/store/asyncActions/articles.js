@@ -19,12 +19,11 @@ export const fetchArticles = (limit, offset) => (
     dispatch(articlesLoadingAction())
     articlesService.getAllArticles(limit, offset)
       .then(res => {
-        console.log(res);
 
         dispatch(getArticlesAction(res.data))
       })
       .catch(err => {
-        dispatch(articlesErrorAction(err.message))
+        dispatch(articlesErrorAction(err.response.data.errors))
       })
   }
 )
@@ -35,7 +34,7 @@ export const fetchArticle = (slug) => (
     articlesService.getArticle(slug)
       .then(res => dispatch(getArticleAction(res.data.article)))
       .catch(err => {
-        dispatch(articlesErrorAction(err.message))
+        dispatch(articlesErrorAction(err.response.data.errors))
       })
   }
 )
@@ -45,12 +44,12 @@ export const fetchCreateArticle = (data) => (
     dispatch(articlesLoadingAction())
     articlesService.createArticle(data)
       .then(res => {
-        console.log(res);
+
 
         dispatch(createArticleAction(res.data.article))
       })
       .catch(err => {
-        dispatch(articlesErrorAction(err.message))
+        dispatch(articlesErrorAction(err.response.data.errors))
       })
   }
 )
@@ -61,12 +60,11 @@ export const fetchEditArticle = (id, data) => (
 
     articlesService.editArticle(id, data)
       .then(res => {
-        console.log(res);
 
         dispatch(editArticleAction(res.data.article))
       })
       .catch(err => {
-        dispatch(articlesErrorAction(err.message))
+        dispatch(articlesErrorAction(err.response.data.errors))
       })
   }
 )
@@ -77,13 +75,12 @@ export const fetchDeleteArticle = (id) => (
     dispatch(articlesLoadingAction())
 
     articlesService.deleteArtile(id)
-      .then(res => {
-        console.log(res);
+      .then(() => {
 
         dispatch(deleteArticleAction())
       })
       .catch(err => {
-        dispatch(articlesErrorAction(err.message))
+        dispatch(articlesErrorAction(err.response.data.errors))
       })
   }
 )

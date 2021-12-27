@@ -49,7 +49,6 @@ function FormArticle({ header, title, descr, body, submitHandler }) {
       }
     }
 
-    console.log(articleBody);
 
     submitHandler(articleBody)
 

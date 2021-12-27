@@ -22,7 +22,7 @@ export const userReducer = (state = initialState, action) => {
   switch (action.type) {
     case USER_LOADING:
 
-      return { ...state, isAuth: false, fetching: true }
+      return { ...state, fetching: true }
 
     case FETCH_USER:
       return { ...state, isAuth: true, fetching: false, user: { ...action.payload } }
@@ -32,7 +32,7 @@ export const userReducer = (state = initialState, action) => {
 
     case USER_ERROR:
 
-      return { ...state, isAuth: false, fetching: false, error: action.payload }
+      return { ...state, fetching: false, error: action.payload }
 
     default:
       return state

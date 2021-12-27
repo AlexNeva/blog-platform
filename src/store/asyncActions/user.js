@@ -19,8 +19,8 @@ export const fetchUser = () => (
         dispatch(userAction(res.data.user))
       })
       .catch(err => {
-        dispatch(userErrorAction(err.message))
-        console.log(err);
+        dispatch(userErrorAction(err.response.data.errors))
+
       })
   }
 
@@ -33,13 +33,13 @@ export const fetchRegistration = (data, callback) => (
     userService.registration(data)
       .then(res => {
         dispatch(userAction(res.data.user))
-        console.log(res.data);
+
 
         Cookies.set('token', res.data.user.token)
         callback()
       })
       .catch(err => {
-        dispatch(userErrorAction(err.message))
+        dispatch(userErrorAction(err.response.data.errors))
       })
   }
 )
@@ -55,9 +55,9 @@ export const fetchLogin = (data, callback) => (
         callback()
       })
       .catch((err) => {
-        dispatch(userErrorAction(err.message))
+        dispatch(userErrorAction(err.response.data.errors))
 
-        console.log(err.response.data.errors);
+
 
       })
   }
@@ -72,7 +72,7 @@ export const fetchEdit = (data) => (
         Cookies.set('token', res.data.user.token)
       })
       .catch(err => {
-        dispatch(userErrorAction(err.message))
+        dispatch(userErrorAction(err.response.data.errors))
       })
   }
 )
