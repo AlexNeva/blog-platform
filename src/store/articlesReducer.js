@@ -48,7 +48,7 @@ export const articlesReducer = (state = initialState, action) => {
       return { ...state, slug: action.payload }
 
     case FETCH_ERROR:
-      return { ...state, error: true, loading: false }
+      return { ...state, error: action.payload, loading: false }
 
     default:
       return state

@@ -1,13 +1,13 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
 import Cookies from 'js-cookie';
-import axios from 'axios';
+
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import FormButton from '../components/Form/FormButton';
 import FormControl from '../components/Form/FormControl';
 import classes from '../components/Form/Form.module.css';
-import { userAction } from '../store/userReducer';
+import { fetchEdit } from '../store/asyncActions/user'
 
 function EditProfile() {
 
@@ -50,18 +50,8 @@ function EditProfile() {
       }
     }
 
-    console.log(data);
+    dispatch(fetchEdit(regBody))
 
-    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-    axios.put('https://cirosantilli-realworld-next.herokuapp.com/api/user', regBody)
-      .then(res => {
-        dispatch(userAction({ isAuth: true, user: res.data.user }))
-        Cookies.set('token', res.data.user.token)
-
-      })
-      .catch(err => {
-        alert('error')
-      })
 
   }
 

@@ -1,5 +1,5 @@
 const initialState = {
-  fetching: false,
+  fetching: true,
   isAuth: false,
   error: null,
   user: {
@@ -25,7 +25,7 @@ export const userReducer = (state = initialState, action) => {
       return { ...state, isAuth: false, fetching: true }
 
     case FETCH_USER:
-      return { ...state, isAuth: true, fetching: false, user: { ...action.payload.user } }
+      return { ...state, isAuth: true, fetching: false, user: { ...action.payload } }
 
     case LOGOUT_USER:
       return { ...state, isAuth: false, user: {} }
