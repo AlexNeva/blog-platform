@@ -3,6 +3,7 @@
 import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm'
 import { useDispatch, useSelector } from 'react-redux';
 import { Spin, Space } from 'antd';
 import Article from '../components/Article/Article';
@@ -59,7 +60,7 @@ function ArticlePage() {
             edit={profileName === author}
           >
             <div>
-              <ReactMarkdown children={article.body} />
+              <ReactMarkdown children={article.body} remarkPlugins={[remarkGfm]} />
 
             </div>
           </Article>
