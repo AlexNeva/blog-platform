@@ -4,7 +4,7 @@ import Cookies from 'js-cookie';
 
 
 
-export const BASE_URL = `http://kata.academy:8022/api`;
+export const BASE_URL = `https://kata.academy:8021/api`;
 
 
 
