@@ -23,4 +23,12 @@ export default class ArticlesService {
     return $http.delete(`/articles/${id}`)
   }
 
+  async addFavorites(slug) {
+    return $http.post(`/articles/${slug}/favorite`)
+  }
+
+  async deleteFavorites(slug) {
+    return $http.delete(`/articles/${slug}/favorite`)
+  }
+
 }

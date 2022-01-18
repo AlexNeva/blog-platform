@@ -20,13 +20,14 @@ function ArticleList() {
   }
 
 
-
+  const { articlesList: articles, loading, articlesCount } = useSelector(state => state.articles)
+  // const { favorited } = useSelector(state => state.articles.article)
 
   useEffect(() => {
     getArticles(5, 0)
   }, [])
 
-  const { articlesList: articles, loading, articlesCount } = useSelector(state => state.articles)
+
 
 
   console.log(articles);

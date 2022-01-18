@@ -7,7 +7,8 @@ const initialState = {
   article: {
     author: {
       username: ''
-    }
+    },
+    favorited: false,
   }
 }
 
@@ -22,6 +23,10 @@ const GET_SLUG = 'GET_SLUG';
 const CREATE_ARTICLE = 'CREATE_ARTICLE';
 const EDIT_ARTICLE = 'EDIT_ARTICLE';
 const DELETE_ARTICLE = 'DELETE_ARTICLE';
+
+const CHANGE_FAVORITED = 'CHANGE_FAVORITED';
+
+
 
 
 
@@ -52,6 +57,18 @@ export const articlesReducer = (state = initialState, action) => {
     case FETCH_ERROR:
       return { ...state, error: action.payload, loading: false }
 
+    case CHANGE_FAVORITED:
+      return {
+        ...state,
+        articlesList: [...state.articlesList.map(article => (
+          article.slug === action.payload.slug
+            ? { ...article, favorited: !article.favorited, favoritesCount: action.payload.favoritesCount }
+            : article
+        ))],
+        article: { ...action.payload }
+      }
+
+
     default:
       return state
   }
@@ -63,15 +80,14 @@ export const articlesErrorAction = (payload) => ({ type: FETCH_ERROR, payload })
 export const getArticlesAction = (payload) => ({ type: FETCH_ARTICLES, payload })
 export const getArticleAction = (payload) => ({ type: FETCH_ARTICLE, payload })
 
-
 export const createArticleAction = (payload) => ({ type: CREATE_ARTICLE, payload })
 
-
 export const editArticleAction = (payload) => ({ type: EDIT_ARTICLE, payload })
-
 
 export const deleteArticleAction = (payload) => ({ type: DELETE_ARTICLE, payload })
 
 
-
 export const slugAction = (payload) => ({ type: GET_SLUG, payload })
+
+
+export const favoritedAction = (payload) => ({ type: CHANGE_FAVORITED, payload })

@@ -6,7 +6,8 @@ import {
   getArticleAction,
   createArticleAction,
   editArticleAction,
-  deleteArticleAction
+  deleteArticleAction,
+  favoritedAction,
 
 
 } from '../articlesReducer'
@@ -84,4 +85,30 @@ export const fetchDeleteArticle = (id, callback) => (
         dispatch(articlesErrorAction(err.response.data.errors))
       })
   }
+)
+
+export const fetchAddToFavorited = (slug) => (
+  (dispatch) => {
+    articlesService.addFavorites(slug)
+      .then((res) => {
+        dispatch(favoritedAction(res.data.article))
+      })
+      .catch(err => {
+        dispatch(articlesErrorAction(err.response.data.errors))
+      })
+  }
+
+)
+
+export const fetchDelFromFavorited = (slug) => (
+  (dispatch) => {
+    articlesService.deleteFavorites(slug)
+      .then((res) => {
+        dispatch(favoritedAction(res.data.article))
+      })
+      .catch(err => {
+        dispatch(articlesErrorAction(err.response.data.errors))
+      })
+  }
+
 )

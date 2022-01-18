@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
@@ -10,7 +9,7 @@ import Heart from './Heart';
 import classes from './Article.module.css'
 import avatar from '../../assets/img/avatar.png'
 import { slugAction } from '../../store/articlesReducer'
-import { fetchDeleteArticle } from '../../store/asyncActions/articles'
+import { fetchDeleteArticle, fetchAddToFavorited, fetchDelFromFavorited } from '../../store/asyncActions/articles'
 
 
 
@@ -36,6 +35,15 @@ function Article({ title, author, updatedAt, tags, descr, favorited, likes, slug
     dispatch(fetchDeleteArticle(slugId, goPage))
   }
 
+  const changeFavorited = (slugId) => {
+    if (!favorited) {
+      dispatch(fetchAddToFavorited(slugId))
+    } else {
+      dispatch(fetchDelFromFavorited(slugId))
+    }
+
+  }
+
   return (
     <div className={classes.Article}>
       <div className={classes.ArticleHeader}>
@@ -51,9 +59,10 @@ function Article({ title, author, updatedAt, tags, descr, favorited, likes, slug
           type='button'
           className={classes.Likes}
           disabled={!isAuth}
+          onClick={() => changeFavorited(slug)}
         >
           <div className={classes.LikesIcon}>
-            <Heart />
+            <Heart filled={favorited} />
           </div>
           <div className={classes.LikesCount}>
             {likes}
