@@ -3,7 +3,7 @@
 import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm'
+import remarkGfm from 'remark-gfm';
 import { useDispatch, useSelector } from 'react-redux';
 import { Spin, Space } from 'antd';
 import Article from '../components/Article/Article';

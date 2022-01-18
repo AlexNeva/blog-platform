@@ -58,8 +58,7 @@ function ArticleList() {
       }
 
       {
-        articlesCount && <Pagination
-
+        !!articlesCount && <Pagination
           defaultCurrent={1}
           defaultPageSize={5}
           total={articlesCount}
