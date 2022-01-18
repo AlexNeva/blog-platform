@@ -22,14 +22,5 @@ $http.interceptors.request.use((config) => {
   return config
 })
 
-// $http.interceptors.response.use(
-//   (response) => response,
-//   (error) => {
-//     console.log(error.response);
-
-//     return Promise.reject(error)
-//   }
-// )
-
 
 export { $http };

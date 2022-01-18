@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-boolean-value */
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import uniqid from 'uniqid';
@@ -21,16 +20,11 @@ function ArticleList() {
 
 
   const { articlesList: articles, loading, articlesCount } = useSelector(state => state.articles)
-  // const { favorited } = useSelector(state => state.articles.article)
 
   useEffect(() => {
     getArticles(5, 0)
   }, [])
 
-
-
-
-  console.log(articles);
 
   return (
     <div className={classes.ArticleList}>
@@ -65,7 +59,7 @@ function ArticleList() {
           total={articlesCount}
           onChange={(page) => getArticles(5, (page - 1) * 5)}
           showSizeChanger={false}
-          hideOnSinglePage={true}
+          hideOnSinglePage='true'
         />
       }
 

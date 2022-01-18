@@ -3,7 +3,7 @@ import Cookies from 'js-cookie';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import classes from './Header.module.css';
-import avatar from './avatar.png';
+import avatar from '../../assets/img/avatar.png'
 import { logoutAction } from '../../store/userReducer'
 
 

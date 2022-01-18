@@ -27,15 +27,11 @@ function EditProfile() {
     }
   )
   const onSubmit = (data) => {
-    // alert(JSON.stringify(data));
 
     const {
       username,
       usermail,
-      // userpass1,
       avatar,
-
-
     } = data;
 
     const regBody = {

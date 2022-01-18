@@ -19,8 +19,6 @@ function ErrorsAlert({ children }) {
           }
         }
       }
-
-      console.log(userError);
     }
   }, [userError])
 
@@ -36,8 +34,6 @@ function ErrorsAlert({ children }) {
           }
         }
       }
-
-      console.log(articleError);
     }
   }, [articleError])
 
