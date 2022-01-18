@@ -16,7 +16,6 @@ export const fetchUser = () => (
 
     userService.getUser()
       .then(res => {
-        console.log(res);
 
         dispatch(userAction(res.data.user))
       })

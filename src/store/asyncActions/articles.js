@@ -80,7 +80,6 @@ export const fetchDeleteArticle = (id, callback) => (
         callback()
       })
       .catch(err => {
-        console.log(err);
 
         dispatch(articlesErrorAction(err.response.data.errors))
       })
