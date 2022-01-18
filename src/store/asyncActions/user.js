@@ -16,6 +16,8 @@ export const fetchUser = () => (
 
     userService.getUser()
       .then(res => {
+        console.log(res);
+
         dispatch(userAction(res.data.user))
       })
       .catch(err => {
@@ -33,8 +35,6 @@ export const fetchRegistration = (data, callback) => (
     userService.registration(data)
       .then(res => {
         dispatch(userAction(res.data.user))
-
-
         Cookies.set('token', res.data.user.token)
         callback()
       })
@@ -49,16 +49,12 @@ export const fetchLogin = (data, callback) => (
     dispatch(userLoadingAction())
     userService.login(data)
       .then(res => {
-
         dispatch(userAction(res.data.user))
         Cookies.set('token', res.data.user.token)
         callback()
       })
       .catch((err) => {
         dispatch(userErrorAction(err.response.data.errors))
-
-
-
       })
   }
 )

@@ -1,7 +1,5 @@
-/* eslint-disable no-unused-vars */
 import React from 'react';
 import Cookies from 'js-cookie';
-
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import FormButton from '../components/Form/FormButton';

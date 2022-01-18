@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import FormButton from '../components/Form/FormButton';
 import FormControl from '../components/Form/FormControl';
@@ -11,11 +11,15 @@ import { fetchLogin } from '../store/asyncActions/user'
 
 function SignIn() {
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const navigate = useNavigate();
 
-  const goHome = () => navigate('/')
+  const location = useLocation();
+
+  const fromPage = location.state?.from?.pathname || '/';
+
+  const goPage = () => navigate(fromPage)
 
   const {
     register,
@@ -45,10 +49,8 @@ function SignIn() {
       }
     }
 
-    console.log(data);
 
-
-    dispatch(fetchLogin(regBody, goHome))
+    dispatch(fetchLogin(regBody, goPage))
 
     reset()
   }

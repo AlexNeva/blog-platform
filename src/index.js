@@ -17,8 +17,6 @@ import App from './App';
 
 ReactDOM.render(
   <React.StrictMode>
-
-
     <Provider store={store}>
       <Router>
         <App />

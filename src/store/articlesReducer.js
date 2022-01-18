@@ -1,11 +1,13 @@
 const initialState = {
-  slug: '',
+  slug: null,
   loading: true,
   error: false,
   articlesList: [],
   articlesCount: 0,
   article: {
-
+    author: {
+      username: ''
+    }
   }
 }
 
@@ -42,7 +44,7 @@ export const articlesReducer = (state = initialState, action) => {
       return { ...state, loading: false, article: { ...action.payload } }
 
     case DELETE_ARTICLE:
-      return { ...state, loading: false, article: { ...action.payload } }
+      return { ...state, loading: false, article: { author: { username: '' }, ...action.payload } }
 
     case GET_SLUG:
       return { ...state, slug: action.payload }

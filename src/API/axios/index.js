@@ -1,29 +1,35 @@
-/* eslint-disable no-param-reassign */
-
 import axios from "axios";
+
 import Cookies from 'js-cookie';
 
-export const BASE_URL = `https://cirosantilli-realworld-next.herokuapp.com/api`
 
-const $auth = axios.create({
+
+export const BASE_URL = `http://kata.academy:8022/api`;
+
+
+
+const $http = axios.create({
 
   baseURL: BASE_URL
 })
 
-$auth.interceptors.request.use((config) => {
+$http.interceptors.request.use((config) => {
 
-  config.headers.Authorization = `Bearer ${Cookies.get('token')}`
+  if (Cookies.get('token')) {
+    config.headers.Authorization = `Bearer ${Cookies.get('token')}`
+  }
 
   return config
 })
 
-const $noAuth = axios.create({
+// $http.interceptors.response.use(
+//   (response) => response,
+//   (error) => {
+//     console.log(error.response);
 
-  baseURL: BASE_URL
-})
-
-$auth.interceptors.request.use((config) => config)
-
+//     return Promise.reject(error)
+//   }
+// )
 
 
-export { $auth, $noAuth };
+export { $http };

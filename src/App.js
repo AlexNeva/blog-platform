@@ -1,9 +1,5 @@
-/* eslint-disable guard-for-in */
-/* eslint-disable id-length */
-/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
-import React, { useEffect, useState } from 'react';
-import { message } from 'antd';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import ArticlesPage from './pages/ArticlesPage'
@@ -16,13 +12,14 @@ import SignIn from './pages/SignIn'
 import SignUp from './pages/SignUp'
 import MainLayout from './Layouts/MainLayout';
 import { fetchUser } from './store/asyncActions/user'
+import Private from './hoc/Private';
+import ErrorsAlert from './components/ErrorsAlert/ErrorsAlert';
 
 
 
 
 function App() {
 
-  // const [ready, setReady] = useState(false)
 
   const dispatch = useDispatch();
   const { isAuth, error: authError } = useSelector(state => state.user);
@@ -30,49 +27,38 @@ function App() {
 
 
   useEffect(() => {
+
     dispatch(fetchUser())
+
   }, [])
-
-  useEffect(() => {
-    if (authError) {
-      // message.info(error);
-
-      for (const e in authError) message.error(`Error: ${e} - ${authError[e]}`);
-    }
-  }, [authError])
-
-  useEffect(() => {
-    if (articleError) {
-      // message.info(error);
-
-      for (const e in articleError) message.error(`Error: ${e} - ${articleError[e]}`);
-    }
-  }, [articleError])
-
-
-
-
 
   return (
     <div className="App">
+      <ErrorsAlert />
       <Routes>
         <Route path='/' element={<MainLayout />}>
           <Route index element={<ArticlesPage />} />
           <Route path="/articles" element={<ArticlesPage />} />
           <Route path="/articles/:id" element={<ArticlePage />} />
-          <Route path="/new-article" element={isAuth ? <CreateArticle /> : <Navigate to='/sign-in' />} />
+          <Route path="/new-article" element={
+            <Private>
+              <CreateArticle />
+            </Private>
+          } />
           <Route path="/articles/:id/edit" element={<EditArticle />} />
           <Route path="/sign-in" element={<SignIn />} />
           <Route path="/sign-up" element={<SignUp />} />
-          <Route path="/profile" element={isAuth ? <EditProfile /> : <Navigate to='/sign-in' />} />
+          <Route path="/profile" element={
+            <Private>
+              <EditProfile />
+            </Private>
+          } />
           <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>
     </div>
   );
 }
-
-
 
 
 export default App;

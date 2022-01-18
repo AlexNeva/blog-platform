@@ -39,14 +39,13 @@ export const fetchArticle = (slug) => (
   }
 )
 
-export const fetchCreateArticle = (data) => (
+export const fetchCreateArticle = (data, callback) => (
   (dispatch) => {
     dispatch(articlesLoadingAction())
     articlesService.createArticle(data)
       .then(res => {
-
-
-        dispatch(createArticleAction(res.data.article))
+        dispatch(createArticleAction(res.data.article));
+        callback();
       })
       .catch(err => {
         dispatch(articlesErrorAction(err.response.data.errors))
@@ -54,14 +53,14 @@ export const fetchCreateArticle = (data) => (
   }
 )
 
-export const fetchEditArticle = (id, data) => (
+export const fetchEditArticle = (id, data, callback) => (
   (dispatch) => {
     dispatch(articlesLoadingAction())
 
     articlesService.editArticle(id, data)
       .then(res => {
-
         dispatch(editArticleAction(res.data.article))
+        callback()
       })
       .catch(err => {
         dispatch(articlesErrorAction(err.response.data.errors))
@@ -70,16 +69,18 @@ export const fetchEditArticle = (id, data) => (
 )
 
 
-export const fetchDeleteArticle = (id) => (
+export const fetchDeleteArticle = (id, callback) => (
   (dispatch) => {
     dispatch(articlesLoadingAction())
 
     articlesService.deleteArtile(id)
       .then(() => {
-
         dispatch(deleteArticleAction())
+        callback()
       })
       .catch(err => {
+        console.log(err);
+
         dispatch(articlesErrorAction(err.response.data.errors))
       })
   }

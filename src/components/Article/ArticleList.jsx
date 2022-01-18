@@ -1,6 +1,4 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-
-/* eslint-disable no-unused-vars */
+/* eslint-disable react/jsx-boolean-value */
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import uniqid from 'uniqid';
@@ -16,16 +14,22 @@ import classes from './Article.module.css'
 function ArticleList() {
 
   const dispatch = useDispatch();
-  const { articlesList: articles, loading, articlesCount } = useSelector(state => state.articles)
-
 
   const getArticles = (limit, offset) => {
     dispatch(fetchArticles(limit, offset))
   }
 
+
+
+
   useEffect(() => {
     getArticles(5, 0)
   }, [])
+
+  const { articlesList: articles, loading, articlesCount } = useSelector(state => state.articles)
+
+
+  console.log(articles);
 
   return (
     <div className={classes.ArticleList}>
@@ -42,7 +46,7 @@ function ArticleList() {
             key={uniqid()}
             title={article.title}
             author={article.author}
-            createdAt={article.createdAt}
+            updatedAt={article.updatedAt}
             tags={article.tagList}
             descr={article.description}
             favorited={article.favorited}
@@ -53,19 +57,19 @@ function ArticleList() {
 
       }
 
+      {
+        articlesCount && <Pagination
+
+          defaultCurrent={1}
+          defaultPageSize={5}
+          total={articlesCount}
+          onChange={(page) => getArticles(5, (page - 1) * 5)}
+          showSizeChanger={false}
+          hideOnSinglePage={true}
+        />
+      }
 
 
-      <Pagination
-        style={{
-          display: loading || !articles.length ? 'none' : 'flex'
-        }}
-
-        defaultCurrent={1}
-        defaultPageSize={5}
-        total={articlesCount}
-        onChange={(page) => getArticles(5, (page - 1) * 5)}
-        showSizeChanger={false}
-      />
 
 
     </div>

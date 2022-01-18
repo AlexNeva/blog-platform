@@ -1,26 +1,36 @@
-/* eslint-disable no-unused-vars */
-import React from 'react';
-import { useParams } from 'react-router-dom';
-// import Cookies from 'js-cookie';
-// import axios from 'axios';
+import React, { useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import FormArticle from '../components/Article/FormArticle';
-import { fetchEditArticle } from '../store/asyncActions/articles'
+import { fetchEditArticle, fetchArticle } from '../store/asyncActions/articles';
+
 
 function EditArticle() {
 
   const dispatch = useDispatch()
 
+  const navigate = useNavigate();
+
   const { id } = useParams()
-  console.log(id);
+
+  const goPage = () => navigate(`/articles/${id}`)
+
 
   const submitHandler = (body) => {
 
-    dispatch(fetchEditArticle(id, body))
+    dispatch(fetchEditArticle(id, body, goPage))
 
   }
 
   const { article } = useSelector(state => state.articles)
+
+  const getArticle = (title) => {
+    dispatch(fetchArticle(title))
+  }
+
+  useEffect(() => {
+    getArticle(id)
+  }, [])
 
   return (
     <div

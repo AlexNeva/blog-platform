@@ -1,6 +1,8 @@
-/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable react/no-children-prop */
+/* eslint-disable no-unused-vars */
 import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import ReactMarkdown from 'react-markdown';
 import { useDispatch, useSelector } from 'react-redux';
 import { Spin, Space } from 'antd';
 import Article from '../components/Article/Article';
@@ -11,11 +13,13 @@ function ArticlePage() {
 
 
   const dispatch = useDispatch();
-  const { article, loading } = useSelector(state => state.articles)
+  const { article, loading } = useSelector(state => state.articles);
+
+  const { username: profileName } = useSelector(state => state.user.user);
+
+  const { username: author } = useSelector(state => state.articles.article.author)
 
   const { id } = useParams()
-
-  console.log(id);
 
   const getArticle = (title) => {
     dispatch(fetchArticle(title))
@@ -46,18 +50,17 @@ function ArticlePage() {
           : <Article
             title={article.title}
             author={article.author}
-            createdAt={article.createdAt}
+            updatedAt={article.updatedAt}
             tags={article.tagList}
             descr={article.description}
             favorited={article.favorited}
             likes={article.favoritesCount}
             slug={id}
-            edit='true'
+            edit={profileName === author}
           >
             <div>
-              {
-                article.body
-              }
+              <ReactMarkdown children={article.body} />
+
             </div>
           </Article>
       }
